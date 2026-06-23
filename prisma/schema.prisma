@@ -12,10 +12,91 @@ datasource db {
   provider = "postgresql"
 }
 
+enum ApplicationStatus {
+  pending
+  confirmed
+  cancelled
+  completed
+}
+
+enum ContractStatus {
+  pending
+  signed
+}
+
 model User {
   id        String   @id @default(cuid())
   email     String   @unique
   name      String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  applications Application[]
+  contracts    Contract[]
+}
+
+model Job {
+  id            String   @id @default(cuid())
+  title         String
+  company       String
+  description   String
+  city          String
+  mapUrl        String?
+  workDate      DateTime
+  timeStart     String
+  timeEnd       String
+  breakMinutes  Int      @default(0)
+  rateEurCents  Int
+  rateLvCents   Int
+  totalEurCents Int
+  totalLvCents  Int
+  totalSlots    Int
+  filledSlots   Int      @default(0)
+  jobType       String
+  workLocation  String
+  languages     String[]
+  isActive      Boolean  @default(true)
+  isFeatured    Boolean  @default(false)
+  createdAt     DateTime @default(now())
+
+  applications Application[]
+  contracts    Contract[]
+}
+
+model Application {
+  id        String            @id @default(cuid())
+  userId    String
+  jobId     String
+  status    ApplicationStatus @default(pending)
+  createdAt DateTime          @default(now())
+
+  user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  job      Job       @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  contract Contract?
+
+  @@unique([userId, jobId])
+  @@index([userId])
+  @@index([jobId])
+}
+
+model Contract {
+  id             String         @id @default(cuid())
+  applicationId  String         @unique
+  userId         String
+  jobId          String
+  contractNumber String         @unique
+  contractHtml   String
+  signedAt       DateTime?
+  signerIp       String?
+  signerEmail    String?
+  signerName     String?
+  status         ContractStatus @default(pending)
+  createdAt      DateTime       @default(now())
+
+  application Application @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  job         Job         @relation(fields: [jobId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([jobId])
 }

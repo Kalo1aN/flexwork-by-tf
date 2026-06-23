@@ -5,7 +5,12 @@
       "PowerShell(npx tsc --noEmit)",
       "PowerShell(npm install *)",
       "PowerShell(npm run *)",
-      "PowerShell(git *)"
+      "PowerShell(git *)",
+      "PowerShell(npx prisma migrate dev --name init)",
+      "PowerShell(npx prisma validate)",
+      "PowerShell(npx prisma migrate status)",
+      "PowerShell(npx prisma migrate dev --name add_jobs_applications_contracts)",
+      "PowerShell(npx tsc --noEmit; if \\($?\\) { \"typecheck OK\" })"
     ]
   }
 }
