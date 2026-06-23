@@ -11,7 +11,8 @@
       "PowerShell(npx prisma migrate status)",
       "PowerShell(npx prisma migrate dev --name add_jobs_applications_contracts)",
       "PowerShell(npx tsc --noEmit; if \\($?\\) { \"typecheck OK\" })",
-      "PowerShell(git show --stat HEAD --oneline | Select-Object -First 20; \"=== prisma.config.ts diff ===\"; git diff HEAD~1 HEAD -- prisma.config.ts; \"=== settings.local.json diff ===\"; git diff HEAD~1 HEAD -- .claude/settings.local.json)"
+      "PowerShell(git show --stat HEAD --oneline | Select-Object -First 20; \"=== prisma.config.ts diff ===\"; git diff HEAD~1 HEAD -- prisma.config.ts; \"=== settings.local.json diff ===\"; git diff HEAD~1 HEAD -- .claude/settings.local.json)",
+      "PowerShell(npx prisma db seed)"
     ]
   }
 }
