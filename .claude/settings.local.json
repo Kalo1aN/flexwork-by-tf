@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(npx prisma generate)",
+      "PowerShell(npx tsc --noEmit)",
+      "PowerShell(npm install *)",
+      "PowerShell(npm run *)",
+      "PowerShell(git *)"
+    ]
+  }
+}
