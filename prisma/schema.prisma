@@ -1,8 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
-
 generator client {
   provider = "prisma-client"
   output   = "../app/generated/prisma"
@@ -12,31 +7,19 @@ datasource db {
   provider = "postgresql"
 }
 
-enum ApplicationStatus {
-  pending
-  confirmed
-  cancelled
-  completed
-}
-
-enum ContractStatus {
-  pending
-  signed
-}
-
 model User {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  name      String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
+  id           String        @id @default(cuid())
+  email        String        @unique
+  name         String?
+  password     String
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
   applications Application[]
   contracts    Contract[]
 }
 
 model Job {
-  id            String   @id @default(cuid())
+  id            String        @id @default(cuid())
   title         String
   company       String
   description   String
@@ -45,22 +28,21 @@ model Job {
   workDate      DateTime
   timeStart     String
   timeEnd       String
-  breakMinutes  Int      @default(0)
+  breakMinutes  Int           @default(0)
   rateEurCents  Int
   rateLvCents   Int
   totalEurCents Int
   totalLvCents  Int
   totalSlots    Int
-  filledSlots   Int      @default(0)
+  filledSlots   Int           @default(0)
   jobType       String
   workLocation  String
   languages     String[]
-  isActive      Boolean  @default(true)
-  isFeatured    Boolean  @default(false)
-  createdAt     DateTime @default(now())
-
-  applications Application[]
-  contracts    Contract[]
+  isActive      Boolean       @default(true)
+  isFeatured    Boolean       @default(false)
+  createdAt     DateTime      @default(now())
+  applications  Application[]
+  contracts     Contract[]
 }
 
 model Application {
@@ -69,10 +51,9 @@ model Application {
   jobId     String
   status    ApplicationStatus @default(pending)
   createdAt DateTime          @default(now())
-
-  user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  job      Job       @relation(fields: [jobId], references: [id], onDelete: Cascade)
-  contract Contract?
+  job       Job               @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  user      User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  contract  Contract?
 
   @@unique([userId, jobId])
   @@index([userId])
@@ -92,11 +73,22 @@ model Contract {
   signerName     String?
   status         ContractStatus @default(pending)
   createdAt      DateTime       @default(now())
-
-  application Application @relation(fields: [applicationId], references: [id], onDelete: Cascade)
-  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
-  job         Job         @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  application    Application    @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+  job            Job            @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  user           User           @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
   @@index([jobId])
+}
+
+enum ApplicationStatus {
+  pending
+  confirmed
+  cancelled
+  completed
+}
+
+enum ContractStatus {
+  pending
+  signed
 }

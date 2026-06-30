@@ -40,14 +40,14 @@ export default function StepsAccordion() {
                 type="button"
                 onClick={() => setOpenIndex(isOpen ? -1 : i)}
                 aria-expanded={isOpen}
-                className="flex w-full items-center justify-between gap-4 px-5 py-5 text-left transition-colors hover:bg-emerald-50/60 sm:px-6"
+                className="flex w-full items-center justify-between gap-4 px-5 py-5 text-left transition-colors hover:bg-green-50/60 sm:px-6"
               >
                 <span className="flex items-center gap-4">
                   <span
                     className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-sm font-bold transition-colors ${
                       isOpen
-                        ? "bg-emerald-600 text-white"
-                        : "bg-emerald-100 text-emerald-700"
+                        ? "bg-green-600 text-white"
+                        : "bg-green-100 text-green-700"
                     }`}
                   >
                     {i + 1}
@@ -57,7 +57,7 @@ export default function StepsAccordion() {
                   </span>
                 </span>
                 <svg
-                  className={`h-5 w-5 shrink-0 text-emerald-600 transition-transform duration-300 ${
+                  className={`h-5 w-5 shrink-0 text-green-600 transition-transform duration-300 ${
                     isOpen ? "rotate-180" : ""
                   }`}
                   viewBox="0 0 20 20"

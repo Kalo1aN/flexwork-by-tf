@@ -3,21 +3,48 @@
 @tailwind utilities;
 
 :root {
+  /* Base */
   --background: #ffffff;
-  --foreground: #171717;
-}
+  --foreground: #0f1f14;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Surfaces (aligned to design-reference.html) */
+  --off: #f7faf8;
+  --surface: #f0f7f2;
+
+  /* Borders */
+  --border: #d4e8da;
+  --border-strong: #b8d9c2;
+
+  /* Text */
+  --text: #0f1f14;
+  --muted: #5a7363;
+  --muted-soft: #8aa894;
+
+  /* Brand green */
+  --green: #16a34a;
+  --green-dark: #15803d;
+  --green-darker: #166534;
+  --green-light: #dcfce7;
+  --green-mid: #86efac;
+
+  /* Status */
+  --amber: #d97706;
+  --amber-bg: #fef3c7;
+  --red: #dc2626;
+  --red-bg: #fee2e2;
+
+  /* Radii */
+  --radius: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-pill: 9999px;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), system-ui, -apple-system, "Segoe UI",
+    sans-serif;
 }
 
 @layer utilities {
