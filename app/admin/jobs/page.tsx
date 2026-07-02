@@ -16,9 +16,14 @@ export default async function AdminJobsPage() {
       <header className="border-b border-gray-100 px-5 py-4 sm:px-8">
         <div className="mx-auto flex max-w-5xl items-center justify-between">
           <h1 className="text-lg font-bold">Админ — Обяви</h1>
-          <a href="/admin/jobs/new" className="rounded-xl bg-green-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-700">
-            + Нова обява
-          </a>
+          <div className="flex items-center gap-3">
+            <a href="/admin/slots" className="rounded-xl border border-gray-200 px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-50">
+              📅 Интервю слотове
+            </a>
+            <a href="/admin/jobs/new" className="rounded-xl bg-green-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-700">
+              + Нова обява
+            </a>
+          </div>
         </div>
       </header>
 

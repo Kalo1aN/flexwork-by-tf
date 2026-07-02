@@ -166,6 +166,44 @@ async function main() {
     console.log(`  ✓ ${job.title} — ${job.city} (${hours}h)`);
   }
 
+  const consultants = await Promise.all([
+    prisma.consultant.upsert({
+      where: { id: "consultant-1" },
+      update: {},
+      create: {
+        id: "consultant-1",
+        name: "Калоян Малинов",
+        phone: "+359896609737",
+        email: "kaloyan.malinov@talentfactor.bg",
+        color: "#16a34a",
+      },
+    }),
+    prisma.consultant.upsert({
+      where: { id: "consultant-2" },
+      update: {},
+      create: {
+        id: "consultant-2",
+        name: "Консултант 2",
+        phone: "+359888000002",
+        email: "consultant2@talentfactor.bg",
+        color: "#2563eb",
+      },
+    }),
+    prisma.consultant.upsert({
+      where: { id: "consultant-3" },
+      update: {},
+      create: {
+        id: "consultant-3",
+        name: "Консултант 3",
+        phone: "+359888000003",
+        email: "consultant3@talentfactor.bg",
+        color: "#7c3aed",
+      },
+    }),
+  ]);
+
+  console.log(`  ✓ ${consultants.length} consultants seeded`);
+
   console.log("Seeding complete.");
 }
 

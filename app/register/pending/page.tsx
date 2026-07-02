@@ -15,11 +15,8 @@ export default function PendingPage() {
           Следващата стъпка е кратък разговор с наш консултант по Viber — около 30 минути.
           Само след одобрение получаваш достъп до позициите.
         </p>
-        <a
-          href="/jobs"
-          className="mt-8 inline-block rounded-full border border-green-200 px-6 py-3 text-sm font-semibold text-green-700 hover:bg-green-50"
-        >
-          Разгледай позициите междувременно
+        <a href="/book-interview" className="mt-8 inline-block rounded-full bg-green-600 px-6 py-3 text-sm font-semibold text-white hover:bg-green-700">
+          Запази интервю с консултант →
         </a>
       </div>
     </div>

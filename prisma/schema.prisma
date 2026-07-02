@@ -16,6 +16,7 @@ model User {
   updatedAt    DateTime      @updatedAt
   applications Application[]
   contracts    Contract[]
+  bookings     InterviewBooking[]
 }
 
 model Job {
@@ -91,4 +92,47 @@ enum ApplicationStatus {
 enum ContractStatus {
   pending
   signed
+}
+
+model Consultant {
+  id          String   @id @default(cuid())
+  name        String
+  phone       String
+  email       String?
+  color       String   @default("#16a34a")
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  slots       InterviewSlot[]
+  bookings    InterviewBooking[]
+}
+
+model InterviewSlot {
+  id           String    @id @default(cuid())
+  consultantId String
+  consultant   Consultant @relation(fields: [consultantId], references: [id])
+  startTime    DateTime
+  endTime      DateTime
+  isBooked     Boolean   @default(false)
+  createdAt    DateTime  @default(now())
+  booking      InterviewBooking?
+}
+
+model InterviewBooking {
+  id            String        @id @default(cuid())
+  slotId        String        @unique
+  slot          InterviewSlot @relation(fields: [slotId], references: [id])
+  userId        String
+  user          User          @relation(fields: [userId], references: [id])
+  consultantId  String
+  consultant    Consultant    @relation(fields: [consultantId], references: [id])
+  status        BookingStatus @default(pending)
+  notes         String?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+}
+
+enum BookingStatus {
+  pending
+  confirmed
+  cancelled
 }
