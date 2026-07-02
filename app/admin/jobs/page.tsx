@@ -20,6 +20,9 @@ export default async function AdminJobsPage() {
             <a href="/admin/slots" className="rounded-xl border border-gray-200 px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-50">
               📅 Интервю слотове
             </a>
+            <a href="/admin/bookings" className="rounded-xl border border-gray-200 px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-50">
+              📋 Заявки
+            </a>
             <a href="/admin/jobs/new" className="rounded-xl bg-green-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-700">
               + Нова обява
             </a>

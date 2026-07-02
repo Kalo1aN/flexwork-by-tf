@@ -24,7 +24,7 @@ export async function POST(req: Request) {
     const passwordHash = await bcrypt.hash(password, 10);
 
     const user = await prisma.user.create({
-      data: { name, email, password: passwordHash },
+      data: { name, email, phone: phone || null, password: passwordHash },
     });
 
     setSessionCookie(user.id);
